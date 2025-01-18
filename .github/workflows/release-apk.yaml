@@ -3,49 +3,44 @@ name: Build and Upload APK
 on:
   push:
     branches:
-      - main  # Adjust based on the branch you want to trigger the workflow from
-  workflow_dispatch:  # Allows manual trigger
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build Flutter APK
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.24.4"
+          flutter-version: 'stable'
 
-      # Step 3: Install dependencies
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Configure Gradle
+        run: |
+          echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
+          echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
+
       - name: Install dependencies
         run: flutter pub get
 
-      # Step 4: Build release APK
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Clean build directory
+        run: flutter clean
 
-      # Step 5: Upload APK as an artifact
+      - name: Build APK
+        run: flutter build apk --release --verbose
+
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
-
-
-      # Step 5: Push APK to a release branch
-      - name: Push APK to releases branch
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b releases
-          mkdir -p release-apks
-          cp build/app/outputs/flutter-apk/app-release.apk release-apks/
-          git add release-apks/app-release.apk
-          git commit -m "Add release APK"
-          git push origin releases --force

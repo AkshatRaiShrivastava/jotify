@@ -11,34 +11,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Set up Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.4'
 
+      # Step 3: Set up JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '11'
 
+      # Step 4: Configure Gradle
       - name: Configure Gradle
         run: |
+          mkdir -p ~/.gradle  # Ensure the directory exists
           echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
           echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
 
+      # Step 5: Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
+      # Step 6: Clean build directory
       - name: Clean build directory
         run: flutter clean
 
+      # Step 7: Build APK
       - name: Build APK
         run: flutter build apk --release --verbose
 
+      # Step 8: Upload APK
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:

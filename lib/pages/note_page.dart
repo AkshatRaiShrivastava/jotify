@@ -76,14 +76,14 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
           'title': title,
           'body': body,
           'imageUrl': _imageUrl.toString(),
-          'timestamp': FieldValue.serverTimestamp(),
+          'timestamp': Timestamp.now(),
         });
       } else {
         await noteService.updateNote(widget.note!.id, {
           'title': title,
           'body': body,
           'imageUrl': _imageUrl.toString(),
-          'timestamp': FieldValue.serverTimestamp(),
+          'timestamp': Timestamp.now(),
         });
       }
 

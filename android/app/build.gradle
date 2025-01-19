@@ -10,8 +10,9 @@ plugins {
 
 android {
     namespace = "com.akshat.jotify"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    compileSdkVersion 34
+    buildToolsVersion "33.0.2"
+    ndkVersion = "25.1.8937393"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

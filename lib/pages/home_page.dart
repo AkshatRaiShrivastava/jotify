@@ -39,8 +39,7 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: CachedNetworkImageProvider(
-                  'https://images.pexels.com/photos/7135057/pexels-photo-7135057.jpeg'),
+              image: AssetImage('assets/bg1.jpg'),
               fit: BoxFit.fitHeight,
             ),
           ),

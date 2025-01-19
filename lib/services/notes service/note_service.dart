@@ -35,7 +35,7 @@ class NoteService {
           .delete();
       log('Note deleted successfully.');
     } catch (e) {
-      log('Failed to delete message: $e');
+      log(e.toString());
     }
   }
 
@@ -52,7 +52,7 @@ class NoteService {
     }
   }
 
-  Future<String> uploadImageToCloudinary(File file) async {
+  Future<String> uploadImageToCloudinary(File file) async{
     try {
       final Uri uri = Uri.parse(
           "https://api.cloudinary.com/v1_1/$cloudinaryCloudName/upload");

@@ -10,9 +10,9 @@ class NoteService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  final String? cloudinaryApiKey = dotenv.env['CLOUDINARY_API_KEY'];
-  final String? cloudinaryApiSecret = dotenv.env['CLOUDINARY_API_SECRET_KEY'];
-  final String? cloudinaryCloudName = dotenv.env['CLOUDINARY_CLOUD_NAME'];
+  final String? cloudinaryApiKey = "746222329139784";
+  final String? cloudinaryApiSecret = "uLrnd6eyX2C6iOeSfQdtuXx_F8w";
+  final String? cloudinaryCloudName = "di22keonp";
 
   // fetching all the notes
   Stream<QuerySnapshot> getAllNotes() {

@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jotify/pages/note_page.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jotify/services/auth%20service/auth_gate.dart';
 
 import 'firebase_options.dart';
@@ -17,7 +17,7 @@ void main() async {
   );
   await Firebase.initializeApp();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  await dotenv.load(fileName: '.env');
+  // await dotenv.load(fileName: '.env');
   runApp(MyApp());
 }
 

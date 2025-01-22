@@ -3,6 +3,7 @@ import 'package:jotify/services/auth%20service/auth_service.dart';
 
 import '../components/my_text_field.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   void Function()? onTap;
   LoginPage({super.key, required this.onTap});

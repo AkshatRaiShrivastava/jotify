@@ -1,11 +1,11 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jotify/pages/note_page.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jotify/services/auth%20service/auth_gate.dart';
-
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +18,10 @@ void main() async {
   await Firebase.initializeApp();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // await dotenv.load(fileName: '.env');
-  runApp(MyApp());
+  runApp(
+    MyApp(), // Wrap your app
+  );
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,9 +33,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       home: const AuthGate(),
-      routes: {
-        '/noteDetails': (context)=>NoteDetailScreen()
-      },
+      routes: {'/noteDetails': (context) => NoteDetailScreen()},
     );
   }
 }

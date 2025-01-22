@@ -26,12 +26,12 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.of(context).pushNamed('/noteDetails');
         },
+        backgroundColor: Color.fromRGBO(190, 147, 226, 1),
         child: Icon(
           Icons.add_rounded,
           size: 35,
           color: Colors.black87,
         ),
-        backgroundColor: Color.fromRGBO(190, 147, 226, 1),
       ),
       body: SafeArea(
         bottom: false,

@@ -29,18 +29,22 @@ jobs:
 
       # Step 5: Create or update a GitHub Release
       - name: Create Release
+        id: create_release
         uses: ncipollo/release-action@v1
         with:
-          tag: v1.0.0 # Replace with your version or use a dynamic tag (e.g., from package.json or pubspec.yaml)
-          release_name: "Release v1.0.0"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v1.0.0 # Replace with your version or use a dynamic tag
+          name: "Release v1.0.0"
           body: |
             ## Changelog
             - Initial release of the application
           draft: false
           prerelease: false
 
-      # Step 6: Upload APK to the Release
+      # Step 6: Upload APK to Release
       - name: Upload APK to Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}

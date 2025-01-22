@@ -33,8 +33,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v1.0.0 # Replace with your version or use a dynamic tag
-          name: "Release v1.0.0"
+          tag: v1.2.0 # Replace with your version or use a dynamic tag
+          name: "Release v1.2.0"
           body: |
             ## Changelog
             - Initial release of the application
